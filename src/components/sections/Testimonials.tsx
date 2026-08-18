@@ -15,6 +15,11 @@ import {
   Languages,
 } from "lucide-react";
 
+import cred1 from "@/assets/cred-1.jpg";
+import cred2 from "@/assets/cred-2.jpg";
+import cred3 from "@/assets/cred-3.jpg";
+
+const SLIDE_IMAGES = [cred1, cred2, cred3];
 const ICONS = [Award, Compass, ShieldCheck, Rocket, Database, Container, Languages];
 const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTOPLAY_MS = 7000;
@@ -96,7 +101,11 @@ export function Testimonials() {
                 <span className="font-sans text-xs font-black tracking-[0.2em] text-foreground/60 uppercase pb-3">
                   No
                 </span>
-                <span className="relative inline-block h-[4.5rem] w-[2.4ch] overflow-hidden leading-none">
+                <span className="relative inline-block h-[4.5rem] overflow-hidden leading-none font-['Oswald',sans-serif] text-[4.5rem] font-bold">
+                  {/* Invisible sizer keeps the animated digits from being clipped */}
+                  <span className="invisible block leading-none" aria-hidden="true">
+                    {String(total).padStart(2, "0")}
+                  </span>
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.span
                       key={activeIdx}
@@ -104,7 +113,7 @@ export function Testimonials() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={reduce ? {} : { y: -40, opacity: 0 }}
                       transition={{ duration: 0.35, ease: EASE }}
-                      className="absolute inset-0 font-['Oswald',sans-serif] text-[4.5rem] font-bold text-primary leading-none"
+                      className="absolute inset-0 flex items-center justify-center text-primary leading-none"
                     >
                       {String(activeIdx + 1).padStart(2, "0")}
                     </motion.span>
@@ -149,6 +158,42 @@ export function Testimonials() {
                 </motion.div>
               </AnimatePresence>
 
+              {/* Slide gallery: 3 visuals that rotate with the slider */}
+              <div className="mb-8 grid grid-cols-3 gap-3">
+                {[0, 1, 2].map((i) => {
+                  const src = SLIDE_IMAGES[(activeIdx + i) % SLIDE_IMAGES.length]!;
+                  const item = slide[i];
+                  return (
+                    <motion.button
+                      key={i}
+                      type="button"
+                      onClick={() => go(activeIdx + 1, 1)}
+                      whileHover={reduce ? {} : { y: -4 }}
+                      transition={{ duration: 0.3, ease: EASE }}
+                      className={`relative overflow-hidden rounded-xl border transition-colors ${
+                        i === 0 ? "border-primary/60" : "border-border"
+                      }`}
+                      aria-label={item?.title[lang] ?? tr("awards.next")}
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        <motion.img
+                          key={src}
+                          src={src}
+                          alt={item?.title[lang] ?? ""}
+                          loading="lazy"
+                          width={640}
+                          height={800}
+                          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.06 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.45, ease: EASE }}
+                          className="aspect-[4/5] w-full object-cover"
+                        />
+                      </AnimatePresence>
+                    </motion.button>
+                  );
+                })}
+              </div>
             </motion.div>
 
             <div className="flex items-center gap-3">

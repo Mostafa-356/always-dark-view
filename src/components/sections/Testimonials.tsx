@@ -153,6 +153,42 @@ export function Testimonials() {
                 </motion.div>
               </AnimatePresence>
 
+              {/* Slide gallery: 3 visuals that rotate with the slider */}
+              <div className="mb-8 grid grid-cols-3 gap-3">
+                {[0, 1, 2].map((i) => {
+                  const src = SLIDE_IMAGES[(activeIdx + i) % SLIDE_IMAGES.length]!;
+                  const item = slide[i];
+                  return (
+                    <motion.button
+                      key={i}
+                      type="button"
+                      onClick={() => go(activeIdx + 1, 1)}
+                      whileHover={reduce ? {} : { y: -4 }}
+                      transition={{ duration: 0.3, ease: EASE }}
+                      className={`relative overflow-hidden rounded-xl border transition-colors ${
+                        i === 0 ? "border-primary/60" : "border-border"
+                      }`}
+                      aria-label={item?.title[lang] ?? tr("awards.next")}
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        <motion.img
+                          key={src}
+                          src={src}
+                          alt={item?.title[lang] ?? ""}
+                          loading="lazy"
+                          width={640}
+                          height={800}
+                          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.06 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.45, ease: EASE }}
+                          className="aspect-[4/5] w-full object-cover"
+                        />
+                      </AnimatePresence>
+                    </motion.button>
+                  );
+                })}
+              </div>
             </motion.div>
 
             <div className="flex items-center gap-3">

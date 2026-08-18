@@ -272,14 +272,13 @@ export function Testimonials() {
               {/* Side cards */}
               <div className="flex h-full flex-col gap-5">
                 {side.map((item, i) => (
-                  <SideCard
-                    key={item.id}
-                    item={item}
-                    lang={lang}
-                    reduce={!!reduce}
-                    index={i + 1}
-                    viewLabel={tr("awards.viewCredential")}
-                  />
+                <SideCard
+                  key={item.id}
+                  item={item}
+                  lang={lang}
+                  reduce={!!reduce}
+                  index={i + 1}
+                />
                 ))}
               </div>
 
@@ -422,13 +421,11 @@ function SideCard({
   lang,
   reduce,
   index,
-  viewLabel,
 }: {
   item: CredentialItem;
   lang: "en" | "ar";
   reduce: boolean;
   index: number;
-  viewLabel: string;
 }) {
   const Icon = iconFor(item.id);
   return (

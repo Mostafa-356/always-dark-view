@@ -15,6 +15,11 @@ import {
   Languages,
 } from "lucide-react";
 
+import cred1 from "@/assets/cred-1.jpg";
+import cred2 from "@/assets/cred-2.jpg";
+import cred3 from "@/assets/cred-3.jpg";
+
+const SLIDE_IMAGES = [cred1, cred2, cred3];
 const ICONS = [Award, Compass, ShieldCheck, Rocket, Database, Container, Languages];
 const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTOPLAY_MS = 7000;

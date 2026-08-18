@@ -96,7 +96,11 @@ export function Testimonials() {
                 <span className="font-sans text-xs font-black tracking-[0.2em] text-foreground/60 uppercase pb-3">
                   No
                 </span>
-                <span className="relative inline-block h-[4.5rem] w-[2.4ch] overflow-hidden leading-none">
+                <span className="relative inline-block h-[4.5rem] overflow-hidden leading-none font-['Oswald',sans-serif] text-[4.5rem] font-bold">
+                  {/* Invisible sizer keeps the animated digits from being clipped */}
+                  <span className="invisible block leading-none" aria-hidden="true">
+                    {String(total).padStart(2, "0")}
+                  </span>
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.span
                       key={activeIdx}
@@ -104,7 +108,7 @@ export function Testimonials() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={reduce ? {} : { y: -40, opacity: 0 }}
                       transition={{ duration: 0.35, ease: EASE }}
-                      className="absolute inset-0 font-['Oswald',sans-serif] text-[4.5rem] font-bold text-primary leading-none"
+                      className="absolute inset-0 flex items-center justify-center text-primary leading-none"
                     >
                       {String(activeIdx + 1).padStart(2, "0")}
                     </motion.span>

@@ -272,14 +272,13 @@ export function Testimonials() {
               {/* Side cards */}
               <div className="flex h-full flex-col gap-5">
                 {side.map((item, i) => (
-                  <SideCard
-                    key={item.id}
-                    item={item}
-                    lang={lang}
-                    reduce={!!reduce}
-                    index={i + 1}
-                    viewLabel={tr("awards.viewCredential")}
-                  />
+                <SideCard
+                  key={item.id}
+                  item={item}
+                  lang={lang}
+                  reduce={!!reduce}
+                  index={i + 1}
+                />
                 ))}
               </div>
 
@@ -422,13 +421,11 @@ function SideCard({
   lang,
   reduce,
   index,
-  viewLabel,
 }: {
   item: CredentialItem;
   lang: "en" | "ar";
   reduce: boolean;
   index: number;
-  viewLabel: string;
 }) {
   const Icon = iconFor(item.id);
   return (
@@ -451,18 +448,6 @@ function SideCard({
       <span className="rounded-xl bg-foreground/10 px-3 py-0.5 font-sans text-[9px] font-black tracking-widest text-primary uppercase border border-border">
         {item.year}
       </span>
-
-      <a
-        href={item.url ?? "/experience"}
-        target={item.url ? "_blank" : undefined}
-        rel={item.url ? "noreferrer" : undefined}
-        className="mt-auto pt-5 w-full"
-      >
-        <span className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-2.5 font-sans text-[10px] font-black uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-primary hover:text-primary-foreground">
-          {viewLabel}
-          <ChevronRight className="size-3.5 rtl:rotate-180" />
-        </span>
-      </a>
     </motion.div>
   );
 }

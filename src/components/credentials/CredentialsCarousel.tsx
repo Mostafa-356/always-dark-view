@@ -33,11 +33,14 @@ export function CredentialsCarousel() {
       }}
     >
       <div className="container-page">
-        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-x-10">
-          {/* Left rail: heading, artwork and controls share one column so both
-              sides of the section always start and end on the same lines. */}
-          <div className="flex min-w-0 flex-col gap-8 lg:col-span-4 lg:col-start-1">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-x-10 lg:gap-y-8">
+          {/* Row 1: heading meta only — the right rail starts below it. */}
+          <div className="min-w-0 lg:col-span-4 lg:col-start-1 lg:row-start-1">
             <CredentialSlideMeta slide={slide} activeIdx={activeIdx} total={total} reduce={reduce} />
+          </div>
+
+          {/* Row 2 (left): artwork + controls, aligned with the cards. */}
+          <div className="flex min-w-0 flex-col gap-8 lg:col-span-4 lg:col-start-1 lg:row-start-2">
             <CredentialVisuals activeIdx={activeIdx} dir={dir} reduce={reduce} />
             <CredentialControls
               total={total}
@@ -52,7 +55,8 @@ export function CredentialsCarousel() {
           <AnimatePresence mode="wait" custom={dir} initial={false}>
             <motion.div
               key={activeIdx}
-              className="grid min-w-0 touch-pan-y grid-cols-1 items-stretch gap-5 sm:gap-6 md:grid-cols-2 lg:col-span-8 lg:col-start-5 lg:gap-8"
+              className="grid min-w-0 touch-pan-y grid-cols-1 items-stretch gap-5 self-start sm:gap-6 md:grid-cols-2 lg:col-span-8 lg:col-start-5 lg:row-start-2 lg:gap-8"
+
               initial={reduce ? { opacity: 0 } : { opacity: 0, x: enterX }}
               animate={{ opacity: 1, x: 0 }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, x: -enterX }}

@@ -93,16 +93,6 @@ export function CredentialsCarousel() {
             </motion.div>
           </AnimatePresence>
 
-          <CredentialVisuals activeIdx={activeIdx} dir={dir} reduce={reduce} />
-
-          <CredentialControls
-            total={total}
-            activeIdx={activeIdx}
-            reduce={reduce}
-            onPrev={prev}
-            onNext={next}
-            onSelect={(i) => go(i, i > activeIdx ? 1 : -1)}
-          />
         </div>
       </div>
     </section>

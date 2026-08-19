@@ -8,10 +8,12 @@ interface CredentialSlideMetaProps {
   activeIdx: number;
   total: number;
   reduce: boolean;
+  /** "title" renders the counter + heading, "details" the per-slide metadata. */
+  part?: "title" | "details" | "all";
 }
 
 /** Section title, slide counter and per-slide metadata. */
-export function CredentialSlideMeta({ slide, activeIdx, total, reduce }: CredentialSlideMetaProps) {
+export function CredentialSlideMeta({ slide, activeIdx, total, reduce, part = "all" }: CredentialSlideMetaProps) {
   const { tr, lang } = useI18n();
 
   return (
@@ -22,6 +24,7 @@ export function CredentialSlideMeta({ slide, activeIdx, total, reduce }: Credent
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.6, ease: EASE }}
     >
+      {part !== "details" && (<>
       <div className="flex items-end gap-3">
         <span className="pb-3 type-label text-foreground/60">No</span>
         <span className="type-h2 relative inline-block overflow-hidden leading-none">
@@ -50,6 +53,9 @@ export function CredentialSlideMeta({ slide, activeIdx, total, reduce }: Credent
         <br />
         {tr("awards.title2")}
       </h2>
+      </>)}
+
+      {part !== "title" && (
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
@@ -78,6 +84,7 @@ export function CredentialSlideMeta({ slide, activeIdx, total, reduce }: Credent
           </p>
         </motion.div>
       </AnimatePresence>
+      )}
     </motion.div>
   );
 }

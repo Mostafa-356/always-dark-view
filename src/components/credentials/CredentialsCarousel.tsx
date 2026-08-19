@@ -36,11 +36,12 @@ export function CredentialsCarousel() {
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-x-10 lg:gap-y-8">
           {/* Row 1: heading meta only — the right rail starts below it. */}
           <div className="min-w-0 lg:col-span-4 lg:col-start-1 lg:row-start-1">
-            <CredentialSlideMeta slide={slide} activeIdx={activeIdx} total={total} reduce={reduce} />
+            <CredentialSlideMeta slide={slide} activeIdx={activeIdx} total={total} reduce={reduce} part="title" />
           </div>
 
           {/* Row 2 (left): artwork + controls, aligned with the cards. */}
           <div className="flex min-w-0 flex-col gap-8 lg:col-span-4 lg:col-start-1 lg:row-start-2">
+            <CredentialSlideMeta slide={slide} activeIdx={activeIdx} total={total} reduce={reduce} part="details" />
             <CredentialVisuals activeIdx={activeIdx} dir={dir} reduce={reduce} />
             <CredentialControls
               total={total}
@@ -55,7 +56,7 @@ export function CredentialsCarousel() {
           <AnimatePresence mode="wait" custom={dir} initial={false}>
             <motion.div
               key={activeIdx}
-              className="grid min-w-0 touch-pan-y grid-cols-1 items-stretch gap-5 self-start sm:gap-6 md:grid-cols-2 lg:col-span-8 lg:col-start-5 lg:row-start-2 lg:gap-8"
+              className="grid min-w-0 touch-pan-y grid-cols-1 items-stretch gap-5 self-start sm:gap-6 md:grid-cols-2 lg:col-span-8 lg:col-start-5 lg:row-start-2 lg:h-full lg:self-stretch lg:gap-8"
 
               initial={reduce ? { opacity: 0 } : { opacity: 0, x: enterX }}
               animate={{ opacity: 1, x: 0 }}
@@ -83,7 +84,7 @@ export function CredentialsCarousel() {
                 />
               )}
 
-              <div className="grid min-w-0 auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:grid-cols-1">
+              <div className="grid min-w-0 auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:h-full md:grid-cols-1">
                 {side.map((item, i) => (
                   <CredentialSideCard
                     key={item.id}

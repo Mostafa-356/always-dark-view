@@ -5,7 +5,6 @@
     "": {
       "name": "tanstack_start_ts",
       "dependencies": {
-        "tanstack_start_ts": ".",
         "@hookform/resolvers": "^5.2.2",
         "@lottiefiles/dotlottie-react": "^0.19.15",
         "@radix-ui/react-accordion": "^1.2.12",
@@ -917,8 +916,6 @@
     "tailwind-merge": ["tailwind-merge@3.6.0", "", {}, "sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w=="],
 
     "tailwindcss": ["tailwindcss@4.3.3", "", {}, "sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ=="],
-
-    "tanstack_start_ts": ["tanstack_start_ts@root:", {}],
 
     "tapable": ["tapable@2.3.3", "", {}, "sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A=="],
 

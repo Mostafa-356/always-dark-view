@@ -1,0 +1,1 @@
+- [Package installation](package-installation.md) — avoid project-path arguments to package-add operations because they can create self-dependencies.
